@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import ImageSlider from '../component/ImageSlider';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     return (
-        <View>
-            
-        </View>
+      <View>
+        <ImageSlider navigation={navigation} />
+      </View>
     );
 }
 
