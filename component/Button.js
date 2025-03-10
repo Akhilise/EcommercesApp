@@ -1,55 +1,43 @@
 import React from "react";
-import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text, ScrollView } from "react-native";
 
-const Button = ({ onPress }) => {
-    onPress = { onPress }
+const Button = ({ onPress, imageSources = [], buttonStyle, textStyle }) => {
   return (
     <View style={styles.view}>
-      <View>
-        <TouchableOpacity style={styles.InstaStyle} activeOpacity={0.5}>
-          <Image
-            source={require("../assets/instagram.png")}
-            style={styles.ImageIconStyle}
-          />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity style={styles.InstaStyle} activeOpacity={0.5}>
-          <Image
-            source={require("../assets/search.png")}
-            style={styles.ImageIconStyle}
-          />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity style={styles.InstaStyle} activeOpacity={0.5}>
-          <Image
-            source={require("../assets/X.png")}
-            style={styles.ImageIconStyle}
-          />
-        </TouchableOpacity>
-      </View>
-    </View>
      
+      {imageSources.map((item,index ) => (
+        <View key={`${item.text}-${index}`} >
+          <TouchableOpacity
+            style={buttonStyle}
+            activeOpacity={0.5}
+            onPress={onPress}
+          >
+            <Image source={item.image} style={styles.imageIconStyle} />
+            <Text style={styles.textStyle}>{item.text || ""}</Text>
+          </TouchableOpacity>
+        </View>
+      ))}
+    </View>
   );
- 
 };
-
 
 const styles = StyleSheet.create({
   view: {
-    flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  InstaStyle: {
-    marginTop: 35,
-    marginHorizontal: 35,
+    justifyContent: "space-evenly",
   },
 
-  ImageIconStyle: {
+  imageIconStyle: {
+    marginTop: 5,
     height: 45,
     width: 45,
+  },
+  textStyle: {
+    marginTop: 5,
+    fontSize: 12,
+    color: "#000",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
 

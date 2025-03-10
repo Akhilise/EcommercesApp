@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { View, TextInput, Text, StyleSheet } from "react-native";
 import Animated, { FadeInUp } from "react-native-reanimated";

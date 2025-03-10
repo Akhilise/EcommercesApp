@@ -19,6 +19,12 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const image = [
+    require("../assets/instagram.png"),
+    require("../assets/search.png"),
+    require("../assets/X.png"),
+  ];
+
   const handleLogin = () => {
     const emailValidation = validateEmail(email);
     const passwordValidation = validatePassword(password);
@@ -92,13 +98,9 @@ export default function LoginScreen({ navigation }) {
             animationDelay={600}
           />
 
-          <Animated.View
-            entering={FadeInUp.delay(800).duration(1000).springify()}
-          >
-            <TouchableOpacity style={styles.button} onPress={handleLogin}>
-              <Text style={styles.buttonText}>Sign In</Text>
-            </TouchableOpacity>
-          </Animated.View>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
 
           <Animated.View
             style={styles.signUpContainer}
@@ -110,9 +112,9 @@ export default function LoginScreen({ navigation }) {
             </TouchableOpacity>
           </Animated.View>
           <Line>Login Using</Line>
-          <View>
-            <Button />
-          </View>
+        </Animated.View>
+        <Animated.View entering={FadeInUp.delay(800).duration(800).springify()}>
+          <Button imageSources={image} images={styles.imageIconStyle} />
         </Animated.View>
       </ScrollView>
     </>
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    width: 385,
+    width: "99%",
     height: 50,
     backgroundColor: "#007AFF",
     borderRadius: 8,
@@ -179,4 +181,6 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontWeight: "600",
   },
+  
+  
 });
