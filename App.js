@@ -14,7 +14,7 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="light" />
 
-      <Stack.Navigator initialRouteName="MainHome">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Login"
           component={LoginScreen}

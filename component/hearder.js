@@ -1,18 +1,15 @@
 import {
   Animated,
   View,
-  TextInput,
   StyleSheet,
   TouchableOpacity,
-  Switch
-  
+  Text,
 } from "react-native";
 import Button from "../component/Button";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "react-native-vector-icons/FontAwesome";
-import { useState } from "react";
 import ToggleSwitch from "./ToggelSwitch";
-
+import SearchBar from "./SearchBar";
 
 const Header_Max_Height = 240;
 const Header_Min_Height = 120;
@@ -24,7 +21,7 @@ const imageData = [
   { image: require("../assets/credit-card.png"), text: "Pay" },
 ];
 
-const DynamicHeader = ({ value, search, setSearch }) => {
+const DynamicHeader = ({ value, onPress }) => {
   const animatedHeaderHeight = value.interpolate({
     inputRange: [0, Scroll_Distance],
     outputRange: [Header_Max_Height, Header_Min_Height],
@@ -36,7 +33,7 @@ const DynamicHeader = ({ value, search, setSearch }) => {
     outputRange: [1, 0],
     extrapolate: "clamp",
   });
-  
+
   return (
     <>
       <Animated.View
@@ -57,17 +54,12 @@ const DynamicHeader = ({ value, search, setSearch }) => {
 
           <TouchableOpacity style={styles.Address}>
             <Ionicons name="building" size={22} color="black" />
+            <Text style={styles.AddressText}>Hii</Text>
           </TouchableOpacity>
         </Animated.View>
-        
 
-        <View
-          style={[
-            styles.searchContainer1,
-            { position: "absolute", bottom: 10, left: 15 },
-          ]}
-        >
-         <ToggleSwitch/>
+        <View style={[{ position: "absolute", bottom: 10, left: 15 }]}>
+          <ToggleSwitch />
         </View>
 
         <View
@@ -76,12 +68,11 @@ const DynamicHeader = ({ value, search, setSearch }) => {
             { position: "absolute", bottom: 10, left: "25%", right: 15 },
           ]}
         >
-          <TextInput
-            placeholder="Search"
-            onChangeText={setSearch}
-            value={search}
-            style={styles.TextInput}
-          />
+          
+          
+          <SearchBar/>
+            
+       
         </View>
       </Animated.View>
     </>
@@ -98,19 +89,23 @@ const styles = StyleSheet.create({
     marginTop: 10,
     //padding:10,
     marginHorizontal: 15,
+    flexDirection: "row",
   },
+  AddressText: {
+    textAlign: "center",
+    fontSize: 16,
+    marginLeft: 10,
+  },
+
   searchContainer: {
     backgroundColor: "#fff",
-    paddingVertical: 2.5,
-    borderRadius: 20,
+    borderRadius: 15,
     borderWidth: 2,
-   
-
     borderColor: "#61b3f2",
   },
   TextInput: {
-    padding: 10,
-    borderRadius: 20,
+    padding: 12,
+    borderRadius: 15,
     backgroundColor: "#fff",
   },
   button: {
@@ -120,13 +115,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#b192ec",
     marginTop: 40,
   },
-  View:{
-    flex:1
+  View: {
+    flex: 1,
   },
-  input:{
-    flex:1,
+  input: {
+    flex: 1,
   },
-  Switch:{
-    marginBottom:5,
+  Switch: {
+    marginBottom: 5,
+  },
+  icon: {
+    marginLeft: 10,
+    color: "#4b7cf0",
+    borderWidth:1,
+  },
+  icon2: {
+    padding:10,
+    marginLeft:"90%",
+    marginRight: "90%",
+    borderWidth:1
+  },
+  Search:{
+    flexDirection:"row",
+    borderWidth:1,
   }
+  
 });

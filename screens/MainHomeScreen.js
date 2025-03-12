@@ -8,6 +8,7 @@ import {
   
 } from "react-native";
 import DynamicHeader from "../component/hearder";
+import ImageSlider from "../component/ImageSlider";
 
 
 const DATA = [
@@ -35,6 +36,15 @@ const MainHomeScreen = () => {
         search={search}
         setSearch={setSearch}
       />
+      <View>
+     
+
+
+      </View>
+
+
+
+
       <ScrollView
         scrollEventThrottle={5}
         showsVerticalScrollIndicator={false}

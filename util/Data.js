@@ -1,6 +1,6 @@
 
-export default [
-  {
+export default {
+  images:[{
     id: 1,
     img: require("../assets/fd.jpg"),
     title: "You want Authentic, here you go!",
@@ -17,5 +17,8 @@ export default [
     img: require("../assets/watch.jpg"),
     title: "You want Authentic, here you go!",
     description: "Find it here, buy it now!",
-  },
-];
+  }],
+  
+
+
+};

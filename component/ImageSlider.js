@@ -8,12 +8,12 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import images from "../util/images";
+import imagesData from "../util/Data";
 
 
 const { width, height } = Dimensions.get("window"); 
 
-const ImageSlider = ({navigation}) => {
+const ImageSlider = ({navigation,style}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef(null);
 
@@ -40,7 +40,8 @@ const ImageSlider = ({navigation}) => {
     setCurrentIndex(index);
   };
 
-  
+  const images=imagesData.images;
+  //const images=
   const currentImage = images[currentIndex];
 
   return (
@@ -58,8 +59,9 @@ const ImageSlider = ({navigation}) => {
           <Image
             key={item.id}
             source={item.img}
-            style={styles.image}
+            style={style}
             resizeMode="cover"
+            
           />
         ))}
       </ScrollView>
@@ -102,10 +104,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
-  image: {
-    width: width,
-    height: height,
-  },
+  
   textContainer: {
     position: "absolute",
 
