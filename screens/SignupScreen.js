@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated, { FadeInDown,FadeInUp } from "react-native-reanimated";
 import Input from "../component/Input";
 import {
   validateEmail,
@@ -19,10 +19,18 @@ import {
 import Button from "../component/Button";
 import Line from "../component/Line";
 
+
+
 export default function SignupScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [userName, setUserName] = useState(""); // Fixed variable naming convention
+
+  const image = [
+    require("../assets/SocialImage/instagram.png"),
+    require("../assets/SocialImage/search.png"),
+    require("../assets/SocialImage/X.png"),
+  ];
 
   const handleSignUp = () => {
     const emailValidation = validateEmail(email);
@@ -51,21 +59,21 @@ export default function SignupScreen({ navigation }) {
         <View style={styles.view}>
           <View>
             <Image
-              source={require("../assets/smoke.png")}
+              source={require("../assets/HomeImages/smoke.png")}
               style={styles.image}
               resizeMode="cover"
             />
           </View>
           <View style={styles.bells}>
             <Animated.Image
-              entering={FadeInDown.delay(200).duration(1000).springify()}
-              source={require("../assets/light.png")}
+              entering={FadeInUp.delay(200).duration(1000).springify()}
+              source={require("../assets/HomeImages/light.png")}
               style={styles.light1}
               resizeMode="contain"
             />
             <Animated.Image
-              entering={FadeInDown.delay(400).duration(1000).springify()}
-              source={require("../assets/light.png")}
+              entering={FadeInUp.delay(400).duration(1000).springify()}
+              source={require("../assets/HomeImages/light.png")}
               style={styles.light2}
               resizeMode="contain"
             />
@@ -73,10 +81,10 @@ export default function SignupScreen({ navigation }) {
         </View>
         <Animated.View
           style={styles.loginForm}
-          entering={FadeInDown.delay(200).duration(1000).springify()}
+          entering={FadeInUp.duration(300).springify()}
         >
           <Animated.Text
-            entering={FadeInDown.delay(200).duration(600).springify()}
+            entering={FadeInUp.delay(200).duration(600).springify()}
             style={styles.title}
           >
             Sign Up
@@ -111,27 +119,23 @@ export default function SignupScreen({ navigation }) {
             animationDelay={800}
           />
 
-          <Animated.View
-            entering={FadeInDown.delay(1000).duration(1000).springify()}
-          >
-            <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-              <Text style={styles.buttonText}>Sign Up</Text>
-            </TouchableOpacity>
-          </Animated.View>
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
 
           <Animated.View
-            style={styles.loginContainer}
-            entering={FadeInDown.delay(1200).duration(1000).springify()}
+            style={styles.signUpContainer}
+            entering={FadeInUp.delay(1000).duration(1000).springify()}
           >
-            <Text style={styles.loginText}>Already Have Account?</Text>
+            <Text style={styles.signUpText}>Already Have Account?</Text>
             <TouchableOpacity onPress={handleLogin}>
-              <Text style={styles.loginButton}>Login</Text>
+              <Text style={styles.signUpButton}>Sign In</Text>
             </TouchableOpacity>
           </Animated.View>
-          <Line>Login Using</Line>
-          <View>
-            <Button />
-          </View>
+          <Line style={styles.Line}>Login Using</Line>
+        </Animated.View>
+        <Animated.View entering={FadeInUp.delay(800).duration(800).springify()}>
+          <Button imageSources={image} />
         </Animated.View>
       </ScrollView>
     </>
@@ -161,10 +165,11 @@ const styles = StyleSheet.create({
   },
   loginForm: {
     flex: 2,
+
     //justifyContent: "center",
     alignItems: "center",
-    padding: 20,
     marginTop: 50,
+    padding: 20,
   },
   title: {
     fontSize: 28,
@@ -172,7 +177,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    width: 390,
+    width: "99%",
     height: 50,
     backgroundColor: "#007AFF",
     borderRadius: 8,
@@ -185,17 +190,22 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
   },
-  loginContainer: {
+  signUpContainer: {
     flexDirection: "row",
-    marginTop: 15,
+    marginTop: 35,
     alignItems: "center",
   },
-  loginText: {
+  signUpText: {
     color: "#666",
   },
-  loginButton: {
+  signUpButton: {
     color: "blue",
     marginLeft: 5,
     fontWeight: "600",
+  },
+  Line: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 45,
   },
 });

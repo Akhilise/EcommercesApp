@@ -1,28 +1,11 @@
 import React, { useRef, useState } from "react";
-import {
-  Animated,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  
-} from "react-native";
+import { Animated, FlatList, StyleSheet, Text, View } from "react-native";
 import DynamicHeader from "../component/hearder";
-import ImageSlider from "../component/ImageSlider";
+import ImageCarousel from "../component/ImageCoursol";
+import Line from "../component/Line";
+import CategoriesData from "../component/CategoriesData";
 
-
-const DATA = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-];
+const DATA = Array.from({ length: 10 }, (_, i) => ({ id: i + 1 }));
 
 const MainHomeScreen = () => {
   const [search, setSearch] = useState("");
@@ -30,36 +13,36 @@ const MainHomeScreen = () => {
 
   return (
     <>
-     
       <DynamicHeader
         value={scrollOffsetY}
         search={search}
         setSearch={setSearch}
       />
-      <View>
-     
 
-
-      </View>
-
-
-
-
-      <ScrollView
+      <FlatList
+        data={DATA}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={
+          <>
+            <View style={styles.Container}>
+              <ImageCarousel />
+            </View>
+            <Line style={styles.Line} />
+            <CategoriesData/>
+          </>
+        }
+        renderItem={({ item }) => (
+          <View style={styles.card}>
+            <Text style={styles.subtitle}>{item.id}</Text>
+          </View>
+        )}
         scrollEventThrottle={5}
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollOffsetY } } }],
           { useNativeDriver: false }
         )}
-      >
-        {DATA.map((val) => (
-          <View key={val.id} style={styles.card}>
-            <Text style={styles.subtitle}>{val.id}</Text>
-          </View>
-        ))}
-        <View style={styles.scrollContent} />
-      </ScrollView>
+      />
     </>
   );
 };
@@ -67,7 +50,10 @@ const MainHomeScreen = () => {
 export default MainHomeScreen;
 
 const styles = StyleSheet.create({
-  
+  Container: {
+    padding: 10,
+    marginHorizontal: 20,
+  },
   card: {
     height: 100,
     backgroundColor: "#E6DDC4",
@@ -81,8 +67,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
   },
-  scrollContent: {
-    height: 500,
+  Line: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "350%",
   },
-  
 });

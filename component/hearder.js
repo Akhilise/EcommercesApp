@@ -15,10 +15,10 @@ const Header_Max_Height = 240;
 const Header_Min_Height = 120;
 const Scroll_Distance = Header_Max_Height - Header_Min_Height;
 const imageData = [
-  { image: require("../assets/flipkart.png"), text: "Flipkart" },
-  { image: require("../assets/basket.png"), text: "Grocery" },
-  { image: require("../assets/travel.png"), text: "Travel" },
-  { image: require("../assets/credit-card.png"), text: "Pay" },
+  { image: require("../assets/Images/flipkart.png"), text: "Flipkart" },
+  { image: require("../assets/Images/basket.png"), text: "Grocery" },
+  { image: require("../assets/Images/travel.png"), text: "Travel" },
+  { image: require("../assets/Images/credit-card.png"), text: "Pay" },
 ];
 
 const DynamicHeader = ({ value, onPress }) => {
@@ -68,11 +68,7 @@ const DynamicHeader = ({ value, onPress }) => {
             { position: "absolute", bottom: 10, left: "25%", right: 15 },
           ]}
         >
-          
-          
-          <SearchBar/>
-            
-       
+          <SearchBar />
         </View>
       </Animated.View>
     </>
@@ -113,7 +109,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     borderRadius: 15,
     backgroundColor: "#b192ec",
-    marginTop: 40,
+    marginTop: 20,
   },
   View: {
     flex: 1,

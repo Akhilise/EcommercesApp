@@ -20,9 +20,9 @@ export default function LoginScreen({ navigation }) {
   const [password, setPassword] = useState("");
 
   const image = [
-    require("../assets/instagram.png"),
-    require("../assets/search.png"),
-    require("../assets/X.png"),
+    require("../assets/SocialImage/instagram.png"),
+    require("../assets/SocialImage/search.png"),
+    require("../assets/SocialImage/X.png"),
   ];
 
   const handleLogin = () => {
@@ -47,7 +47,7 @@ export default function LoginScreen({ navigation }) {
         <View style={styles.view}>
           <View>
             <Image
-              source={require("../assets/smoke.png")}
+              source={require("../assets/HomeImages/smoke.png")}
               style={styles.image}
               resizeMode="cover"
             />
@@ -55,13 +55,13 @@ export default function LoginScreen({ navigation }) {
           <View style={styles.bells}>
             <Animated.Image
               entering={FadeInUp.delay(200).duration(1000).springify()}
-              source={require("../assets/light.png")}
+              source={require("../assets/HomeImages/light.png")}
               style={styles.light1}
               resizeMode="contain"
             />
             <Animated.Image
               entering={FadeInUp.delay(400).duration(1000).springify()}
-              source={require("../assets/light.png")}
+              source={require("../assets/HomeImages/light.png")}
               style={styles.light2}
               resizeMode="contain"
             />
@@ -111,10 +111,10 @@ export default function LoginScreen({ navigation }) {
               <Text style={styles.signUpButton}>Sign Up</Text>
             </TouchableOpacity>
           </Animated.View>
-          <Line>Login Using</Line>
+          <Line style={styles.Line}>Login Using</Line>
         </Animated.View>
         <Animated.View entering={FadeInUp.delay(800).duration(800).springify()}>
-          <Button imageSources={image} images={styles.imageIconStyle} />
+          <Button imageSources={image}  />
         </Animated.View>
       </ScrollView>
     </>
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
   },
   loginForm: {
     flex: 2,
+    
     //justifyContent: "center",
     alignItems: "center",
     marginTop: 50,
@@ -181,6 +182,9 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     fontWeight: "600",
   },
+  Line:{
+    flexDirection: "row", alignItems: "center",marginTop:45 
+  }
   
   
 });

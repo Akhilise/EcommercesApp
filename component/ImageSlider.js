@@ -40,13 +40,13 @@ const ImageSlider = ({navigation,style}) => {
     setCurrentIndex(index);
   };
 
-  const images=imagesData.images;
-  //const images=
-  const currentImage = images[currentIndex];
+  const images=imagesData.images ;
+  
+  
+  
 
   return (
     <View style={styles.container}>
-      
       <ScrollView
         ref={scrollRef}
         horizontal
@@ -61,23 +61,25 @@ const ImageSlider = ({navigation,style}) => {
             source={item.img}
             style={style}
             resizeMode="cover"
-            
           />
         ))}
       </ScrollView>
 
-      
       <View style={styles.textContainer}>
-        <Text style={styles.title}>{currentImage.title}</Text>
-        <Text style={styles.description}>{currentImage.description}</Text>
+        <Text style={styles.title}>{images[currentIndex]?.title}</Text>
+        <Text style={styles.description}>
+          {images[currentIndex]?.description}
+        </Text>
         <View style={styles.View1}>
-          <TouchableOpacity style={styles.TouchableOpacity} onPress={handleMainHome}>
+          <TouchableOpacity
+            style={styles.TouchableOpacity}
+            onPress={handleMainHome}
+          >
             <Text style={styles.text}>Get Started!</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      
       <View style={styles.dotsContainer}>
         {images.map((_, index) => (
           <View
