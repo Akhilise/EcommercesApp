@@ -4,8 +4,9 @@ import DynamicHeader from "../component/hearder";
 import ImageCarousel from "../component/ImageCoursol";
 import Line from "../component/Line";
 import CategoriesData from "../component/CategoriesData";
+import RecentViewed from "../component/RecentViewed";
 
-const DATA = Array.from({ length: 10 }, (_, i) => ({ id: i + 1 }));
+const DATA = Array.from({ length: 100}, (_, i) => ({ id: i + 1 }));
 
 const MainHomeScreen = () => {
   const [search, setSearch] = useState("");
@@ -25,10 +26,15 @@ const MainHomeScreen = () => {
         ListHeaderComponent={
           <>
             <View style={styles.Container}>
-              <ImageCarousel />
+              <ImageCarousel/>
             </View>
             <Line style={styles.Line} />
-            <CategoriesData/>
+<CategoriesData/>
+            <Line style={styles.Line} />
+            <View style={styles.InnerContainer}>
+              <Text style={styles.Title1}>Recent Viewed Store </Text>
+              <RecentViewed/>
+            </View>
           </>
         }
         renderItem={({ item }) => (
@@ -71,5 +77,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     width: "350%",
+  },
+  InnerContainer: {
+    marginHorizontal: 10,
+   
+  },
+  Title1: {
+    fontSize: 18,
+    fontStyle: "italic",
+    fontWeight: "bold",
   },
 });

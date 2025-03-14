@@ -29,7 +29,7 @@ const DynamicHeader = ({ value, onPress }) => {
   });
 
   const buttonOpacity = value.interpolate({
-    inputRange: [0, Scroll_Distance / 2],
+    inputRange: [0, Scroll_Distance/2],
     outputRange: [1, 0],
     extrapolate: "clamp",
   });
@@ -50,7 +50,7 @@ const DynamicHeader = ({ value, onPress }) => {
         />
 
         <Animated.View style={{ opacity: buttonOpacity }}>
-          <Button imageSources={imageData} buttonStyle={styles.button} />
+          <Button imageSources={imageData} buttonStyle={styles.button} style={styles.imageIconStyle} />
 
           <TouchableOpacity style={styles.Address}>
             <Ionicons name="building" size={22} color="black" />
@@ -134,6 +134,12 @@ const styles = StyleSheet.create({
   Search:{
     flexDirection:"row",
     borderWidth:1,
-  }
+  },
+  imageIconStyle: {
+    height: 45,
+    width: 45,
+    marginTop:10,
+    
+  },
   
 });

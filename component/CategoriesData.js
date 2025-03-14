@@ -2,12 +2,12 @@ import {
   StyleSheet,
   Text,
   View,
-  FlatList,
   Image,
   ScrollView,
 } from "react-native";
 import React from "react";
 import imagesData from "../util/Data";
+import Button from "./Button";
 
 const categoriesData = imagesData.categoriesData;
 
@@ -30,8 +30,14 @@ const CategoriesData = () => {
           <View key={rowIndex} style={styles.row}>
             {row.map((item) => (
               <View key={item.id} style={styles.card}>
-                <Image source={{ uri: item.image_uri }} style={styles.image} />
-                <Text style={styles.text}>{item.name}</Text>
+                <Button
+                  imageSources={[
+                    { image: { uri: item.image_uri }, text: item.name },
+                  ]}
+                  buttonStyle={styles.image}
+                  style={styles.imageIconStyle}
+                />
+                
               </View>
             ))}
           </View>
@@ -53,7 +59,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   card: {
-    width: 100,
+    
+    height:110,
+    width: 110,
     marginVertical: 5,
     alignItems: "center",
     backgroundColor: "#f8f8f8",
@@ -65,16 +73,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-  image: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
+  imageIconStyle: {
+    height: 65,
+    width: 65,
+ 
   },
+
   text: {
     fontSize: 14,
     fontWeight: "bold",
     color: "#333",
     textAlign: "center",
-    marginTop: 5,
+    borderWidth: 1,
   },
 });
